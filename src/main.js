@@ -108,6 +108,7 @@ var showFormBtn = document.querySelector(".show-form")
 var posterImg = document.querySelector(".poster-img")
 var posterTitle = document.querySelector(".poster-title")
 var posterQuote = document.querySelector(".poster-quote")
+var showMainBtn = document.querySelector(".show-main")
 
 // event listeners go here 👇
 window.addEventListener("load",displayRandom)
@@ -115,7 +116,7 @@ saveButton.addEventListener("click",savePoster)
 showSavedBtn.addEventListener("click",displaySaved)
 showRandomBtn.addEventListener("click",displayRandom)
 showFormBtn.addEventListener("click",createCustom)
-
+showMainBtn.addEventListener("click",displayMain)
 
 // functions and event handlers go here 👇
 
@@ -132,12 +133,6 @@ function createPoster(imageURL, title, quote) {
     quote: quote,
   };
 }
-function savePoster(){
-
-}
-function displaySaved(){
-
-}
 
 function generateRandom(){
   var imageURL= getRandomIndex(images)
@@ -153,11 +148,33 @@ function displayRandom(){
   posterTitle.innerHTML = titles[randomPoster.title]
   posterQuote.innerHTML = quotes[randomPoster.quote]
 }
+function displayMain(){
+// take us back to the main page from the custom form
+}
+
+//hidden and visible toggle vs conditional statements that are repetitive
+// two functions to add or remove the hidden property
+//classList
+//methods like add and remove and toggle 
+//elements can have a classList property
+
+
+function showElement(element){
+element.classList.remove("hidden")
+}
+function hideElement(){
+element.classList.add("hidden")
+}
 
 function createCustom(){
   
 }
+function savePoster(){
 
+}
+function displaySaved(){
+
+}
 /*
 iteration 1
 ~~~~~~~~~~
@@ -177,3 +194,17 @@ In summary: Be able to switch between the three views (main poster, form, and sa
 
 ***go check out the HTML and CSS files to see how the form and saved posters sections are being hidden in the first place
 
+iteration 2
+~~~~~~~~~~~~
+On the new poster form view, users should be able to fill out the three input fields and then hit the Show My Poster button
+
+When the Show My Poster button is clicked, several things will happen:
+
+Use the values from the inputs to create a new, unique poster object (part of your data model)
+
+Save the submitted data into the respective arrays (image URL into the images array, etc - all part of your data model) so that future random posters can use the user-created data
+
+Change back to the main poster view (hiding the form view again)
+
+Use the new, unique poster object (part of your data model) to display the newly created poster image, title, and quote in the main view on the DOM
+*/
