@@ -1,5 +1,3 @@
-// query selector variables go here 👇
-var saveButton = document.querySelector(".save-poster")
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -98,12 +96,29 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall.",
 ];
+
 var savedPosters = [];
 var currentPoster;
 
+// query selector variables go here 👇
+var saveButton = document.querySelector(".save-poster")
+var showSavedBtn = document.querySelector(".show-saved")
+var showRandomBtn = document.querySelector(".show-random")
+var showFormBtn = document.querySelector(".show-form")
+var posterImg = document.querySelector(".poster-img")
+var posterTitle = document.querySelector(".poster-title")
+var posterQuote = document.querySelector(".poster-quote")
+
 // event listeners go here 👇
+window.addEventListener("load",displayRandom)
+saveButton.addEventListener("click",savePoster)
+showSavedBtn.addEventListener("click",displaySaved)
+showRandomBtn.addEventListener("click",displayRandom)
+showFormBtn.addEventListener("click",createCustom)
+
 
 // functions and event handlers go here 👇
+
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
@@ -117,21 +132,33 @@ function createPoster(imageURL, title, quote) {
     quote: quote,
   };
 }
+function savePoster(){
 
-/* iteration 0 planning:
-When the page loads, we should see a poster with a randomly selected image, title, and quote
-~~~~~~~~~~~
-on page load, have random image and phrases appear in the DOM
---> event listener for page load 
---> randomize function for image
---> randomize function for title
---> randomize function for quote
+}
+function displaySaved(){
 
-Every time the user clicks the Show Random Poster button, a new random poster is displayed
---> event listener for random button
----->  interacts w the DOM 
-------> engages the random functions for image, title, and quote
+}
 
+function generateRandom(){
+  var imageURL= getRandomIndex(images)
+  var title = getRandomIndex(titles)
+  var quote = getRandomIndex(quotes)
+
+  return createPoster(imageURL,title,quote)
+}
+
+function displayRandom(){
+  var randomPoster = generateRandom()
+  posterImg.src = images[randomPoster.imageURL]
+  posterTitle.innerHTML = titles[randomPoster.title]
+  posterQuote.innerHTML = quotes[randomPoster.quote]
+}
+
+function createCustom(){
+  
+}
+
+/*
 iteration 1
 ~~~~~~~~~~
 When a user clicks the “Make Your Own Poster” button, we should see the form, and the main poster should be hidden
