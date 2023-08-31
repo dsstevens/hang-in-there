@@ -101,23 +101,28 @@ var savedPosters = [];
 var currentPoster;
 
 // query selector variables go here 👇
-var saveButton = document.querySelector(".save-poster")
-var showSavedBtn = document.querySelector(".show-saved")
-var showRandomBtn = document.querySelector(".show-random")
-var showFormBtn = document.querySelector(".show-form")
-var posterImg = document.querySelector(".poster-img")
-var posterTitle = document.querySelector(".poster-title")
-var posterQuote = document.querySelector(".poster-quote")
-var showMainBtn = document.querySelector(".show-main")
+var saveButton = document.querySelector(".save-poster");
+var showSavedBtn = document.querySelector(".show-saved");
+var showRandomBtn = document.querySelector(".show-random");
+var showFormBtn = document.querySelector(".show-form");
+var posterImg = document.querySelector(".poster-img");
+var posterTitle = document.querySelector(".poster-title");
+var posterQuote = document.querySelector(".poster-quote");
+var showMainBtn = document.querySelector(".show-main");
+var showMainPoster = document.querySelector(".main-poster")
+var posterForm = document.querySelector(".poster-form")
+var makePosterBtn = document.querySelector(".make-poster")
+var goBackToMain = document.querySelector(".back-to-main")
 
 // event listeners go here 👇
-window.addEventListener("load",displayRandom)
-saveButton.addEventListener("click",savePoster)
-showSavedBtn.addEventListener("click",displaySaved)
-showRandomBtn.addEventListener("click",displayRandom)
-showFormBtn.addEventListener("click",createCustom)
-showMainBtn.addEventListener("click",displayMain)
-
+window.addEventListener("load", displayRandom);
+saveButton.addEventListener("click", savePoster);
+showSavedBtn.addEventListener("click", displaySaved);
+showRandomBtn.addEventListener("click", displayRandom);
+showFormBtn.addEventListener("click", createCustomView);
+showMainBtn.addEventListener("click", displayMain);
+makePosterBtn.addEventListener("click", createCustomView)
+goBackToMain.addEventListener("click",displayMain)
 // functions and event handlers go here 👇
 
 // (we've provided two to get you started)!
@@ -134,50 +139,61 @@ function createPoster(imageURL, title, quote) {
   };
 }
 
-function generateRandom(){
-  var imageURL= getRandomIndex(images)
-  var title = getRandomIndex(titles)
-  var quote = getRandomIndex(quotes)
+function generateRandom() {
+  var imageURL = getRandomIndex(images);
+  var title = getRandomIndex(titles);
+  var quote = getRandomIndex(quotes);
 
-  return createPoster(imageURL,title,quote)
+  return createPoster(imageURL, title, quote);
 }
 
-function displayRandom(){
-  var randomPoster = generateRandom()
-  posterImg.src = images[randomPoster.imageURL]
-  posterTitle.innerHTML = titles[randomPoster.title]
-  posterQuote.innerHTML = quotes[randomPoster.quote]
+function displayRandom() {
+  var randomPoster = generateRandom();
+  posterImg.src = images[randomPoster.imageURL];
+  posterTitle.innerHTML = titles[randomPoster.title];
+  posterQuote.innerHTML = quotes[randomPoster.quote];
 }
-function displayMain(){
-// take us back to the main page from the custom form
+function displayMain() {
+  // take us back to the main page from the custom form
+  showElement(showMainPoster)
+  hideElement(posterForm)
+  hideElement(savedPosters)
 }
 
 //hidden and visible toggle vs conditional statements that are repetitive
 // two functions to add or remove the hidden property
 //classList
-//methods like add and remove and toggle 
+//methods like add and remove and toggle
 //elements can have a classList property
 
-
-function showElement(element){
-element.classList.remove("hidden")
+function showElement(element) {
+  element.classList.remove("hidden");
 }
-function hideElement(){
-element.classList.add("hidden")
+function hideElement(element) {
+  element.classList.add("hidden");
 }
 
-function createCustom(){
-  
+function createCustomView() {
+  showElement(makePosterBtn)
+  hideElement(showMainPoster)
+  showElement(posterForm)
 }
-function savePoster(){
+// target input value = innerHTML for poster title
+// target input value = innerHTML for poster quote
+// target input value = src for poster image url
+
+function savePoster() {
 
 }
-function displaySaved(){
-
+function displaySaved() {
+  hideElement(showMainPoster)
+  showElement(savedPosters)
+  showElement(goBackToMain)
 }
 /*
 iteration 1
 ~~~~~~~~~~
+BUTTONS!
 When a user clicks the “Make Your Own Poster” button, we should see the form, and the main poster should be hidden
 --> event listener for make your own poster button
 ----> toggle function for showing the form & hiding the landing page
@@ -196,6 +212,7 @@ In summary: Be able to switch between the three views (main poster, form, and sa
 
 iteration 2
 ~~~~~~~~~~~~
+TARGET THE INNERHTML TO CREATE NEW & SAVE
 On the new poster form view, users should be able to fill out the three input fields and then hit the Show My Poster button
 
 When the Show My Poster button is clicked, several things will happen:
