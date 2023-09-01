@@ -101,21 +101,36 @@ var savedPosters = [];
 var currentPoster;
 
 // query selector variables go here 👇
-var saveButton = document.querySelector(".save-poster")
-var showSavedBtn = document.querySelector(".show-saved")
-var showRandomBtn = document.querySelector(".show-random")
-var showFormBtn = document.querySelector(".show-form")
-var posterImg = document.querySelector(".poster-img")
-var posterTitle = document.querySelector(".poster-title")
-var posterQuote = document.querySelector(".poster-quote")
+// cover, title descriptor
+var posterImg = document.querySelector(".poster-img");
+var posterTitle = document.querySelector(".poster-title");
+var posterQuote = document.querySelector(".poster-quote");
+// buttons
+var saveButton = document.querySelector(".save-poster");
+var showSavedBtn = document.querySelector(".show-saved");
+var showRandomBtn = document.querySelector(".show-random");
+var showFormBtn = document.querySelector(".show-form");
+var showMainBtn = document.querySelector(".show-main");
+var showMyPosterBtn = document.querySelector(".make-poster")
+var goBackToMainBtn = document.querySelector(".back-to-main")
+// views
+var showMainPoster = document.querySelector(".main-poster")
+var posterForm = document.querySelector(".poster-form")
+var savedPostersView = document.querySelector(".saved-posters")
+// user created
+var userCreatedTitle = document.querySelector("#poster-title")
+var userCreatedQuote = document.querySelector("#poster-quote")
+var userCreatedImage = document.querySelector("#poster-image-url")
 
 // event listeners go here 👇
-window.addEventListener("load",displayRandom)
-saveButton.addEventListener("click",savePoster)
-showSavedBtn.addEventListener("click",displaySaved)
-showRandomBtn.addEventListener("click",displayRandom)
-showFormBtn.addEventListener("click",createCustom)
-
+window.addEventListener("load", displayRandom);
+saveButton.addEventListener("click", savePoster);
+showSavedBtn.addEventListener("click", displaySaved);
+showRandomBtn.addEventListener("click", displayRandom);
+showFormBtn.addEventListener("click", createCustomView);
+showMainBtn.addEventListener("click", displayMain);
+showMyPosterBtn.addEventListener("click",createCustomPoster);
+goBackToMainBtn.addEventListener("click",displayMain);
 
 // functions and event handlers go here 👇
 
@@ -132,48 +147,108 @@ function createPoster(imageURL, title, quote) {
     quote: quote,
   };
 }
-function savePoster(){
 
-}
-function displaySaved(){
-
-}
-
-function generateRandom(){
-  var imageURL= getRandomIndex(images)
-  var title = getRandomIndex(titles)
-  var quote = getRandomIndex(quotes)
-
-  return createPoster(imageURL,title,quote)
+function generateRandom() {
+  var imageURL = getRandomIndex(images);
+  var title = getRandomIndex(titles);
+  var quote = getRandomIndex(quotes);
+  return createPoster(imageURL, title, quote);
 }
 
-function displayRandom(){
-  var randomPoster = generateRandom()
-  posterImg.src = images[randomPoster.imageURL]
-  posterTitle.innerHTML = titles[randomPoster.title]
-  posterQuote.innerHTML = quotes[randomPoster.quote]
+function displayRandom() {
+  var randomPoster = generateRandom();
+  posterImg.src = images[randomPoster.imageURL];
+  posterTitle.innerHTML = titles[randomPoster.title];
+  posterQuote.innerHTML = quotes[randomPoster.quote];
+}
+function displayMain() {
+  showElement(showMainPoster)
+  hideElement(posterForm)
+  hideElement(savedPostersView)
 }
 
-function createCustom(){
-  
+function showElement(element) {
+  element.classList.remove("hidden");
 }
+function hideElement(element) {
+  element.classList.add("hidden");
+}
+
+function createCustomView() {
+  hideElement(showMainPoster)
+  showElement(posterForm)
+}
+
+function createCustomPoster(event){
+  currentPoster = createPoster(userCreatedImage, userCreatedTitle, userCreatedQuote )
+  posterImg.src = userCreatedImage.value 
+  posterTitle.innerHTML = userCreatedTitle.value
+  posterQuote.innerHTML = userCreatedQuote.value
+ event.preventDefault();
+ hideElement(posterForm)
+ showElement(showMainPoster)
+ return currentPoster
+}
+
+function savePoster() {
+// add to array, get by the date.now id
+}
+function displaySaved() {
+  hideElement(showMainPoster)
+  showElement(savedPostersView)
+}
+
 
 /*
-iteration 1
-~~~~~~~~~~
-When a user clicks the “Make Your Own Poster” button, we should see the form, and the main poster should be hidden
---> event listener for make your own poster button
-----> toggle function for showing the form & hiding the landing page
 
-When a user clicks the “View Saved Posters” button, we should see the saved posters area, and the main poster should be hidden
---> event listener for the view saved posters button
-----> toggle function for showing the saved posters and hiding the main poster
+iteration 2
+~~~~~~~~~~~~
+TARGET THE INNERHTML TO CREATE NEW & SAVE
+On the new poster form view, users should be able to fill out the three input fields and then hit the Show My Poster button
+--> the query selector, event listener and function are made! :)
+----> still need the show my poster button to work
 
-When a user clicks the “Nevermind, take me back!” or “Back to Main” buttons, we should only see the main poster section
---> event listener for the return button
-----> toggle function to hide the posters and show main page
+When the Show My Poster button is clicked, several things will happen:
+--> idk y it takes us back to main (for now)
 
-In summary: Be able to switch between the three views (main poster, form, and saved posters) on the correct button clicks
+Use the values from the inputs to create a new, unique poster object (part of your data model)
+--> call upon the createPoster function to create the poster object
 
-***go check out the HTML and CSS files to see how the form and saved posters sections are being hidden in the first place
+Save the submitted data into the respective arrays (image URL into the images array, etc - all part of your data model) so that future random posters can use the user-created data
+--> create a function to push input into savedposters, caption, phrase, & image source array
 
+Change back to the main poster view (hiding the form view again)
+--> this should work w our hidden views, double check
+
+Use the new, unique poster object (part of your data model) to display the newly created poster image, title, and quote in the main view on the DOM
+--> write a function to display poster, using the currentCover variable given
+
+*** hint***
+Is something weird happening when you click the button? Try googling event.preventDefault()!
+
+iteration 3
+~~~~~~~~~~~
+When a user clicks the “Save This Poster” button, the current main poster will be added to the savedPosters array.
+--> savePoster function done
+----> .push method
+
+If a user clicks the “Save This Poster” more than once on a single poster, it will still only be saved once (no duplicates)
+--> create a truthy/falsy variable for a conditional
+
+When a user clicks the “Show Saved Posters” button, we should see the saved posters section
+All the posters in the savedPosters array should be displayed in the saved posters grid section
+--> create a function as an event handler?
+----> target the section with innerHTML as an empty string
+------> because working off an array, for loop?
+
+
+
+iteration 4
+~~~~~~~~~~~
+From the saved posters view, if a user double clicks a saved poster, it will be deleted
+HTML onclick attributes should not be used in any HTML code - all functionality should be through JavaScript
+--> event listener for the image with the dblclick event
+----> event bubbling to target the section where the image is in saved posters view
+
+
+*/
