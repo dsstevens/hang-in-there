@@ -191,7 +191,15 @@ function createCustomPoster(event){
 }
 
 function savePoster() {
-// add to array, get by the date.now id
+  var currentPoster = createPoster(posterImg.src, posterTitle.innerText, posterQuote.innerText);
+
+  function posterIdMatches(poster) {
+    return poster.id === currentPoster.id;
+  }
+
+  if (!savedPosters.some(posterIdMatches)) {
+    savedPosters.push(currentPoster);
+  }
 }
 function displaySaved() {
   hideElement(showMainPoster)
