@@ -147,8 +147,6 @@ function createPoster(imageURL, title, quote) {
     quote: quote,
   };
 }
-// innerhtml to change
-//event listener for the input field?
 
 function generateRandom() {
   var imageURL = getRandomIndex(images);
@@ -164,17 +162,10 @@ function displayRandom() {
   posterQuote.innerHTML = quotes[randomPoster.quote];
 }
 function displayMain() {
-  // take us back to the main page from the custom form
   showElement(showMainPoster)
   hideElement(posterForm)
   hideElement(savedPostersView)
 }
-
-//hidden and visible toggle vs conditional statements that are repetitive
-// two functions to add or remove the hidden property
-//classList
-//methods like add and remove and toggle
-//elements can have a classList property
 
 function showElement(element) {
   element.classList.remove("hidden");
@@ -207,8 +198,6 @@ function displaySaved() {
   showElement(savedPostersView)
 }
 
-
-  
 
 /*
 
