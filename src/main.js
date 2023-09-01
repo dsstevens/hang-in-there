@@ -127,10 +127,11 @@ window.addEventListener("load", displayRandom);
 saveButton.addEventListener("click", savePoster);
 showSavedBtn.addEventListener("click", displaySaved);
 showRandomBtn.addEventListener("click", displayRandom);
-showFormBtn.addEventListener("click", createPoster);
+showFormBtn.addEventListener("click", createCustomView);
 showMainBtn.addEventListener("click", displayMain);
 makePosterBtn.addEventListener("click",createCustomPoster)
 goBackToMainBtn.addEventListener("click",displayMain)
+
 // functions and event handlers go here 👇
 
 // (we've provided two to get you started)!
@@ -147,7 +148,7 @@ function createPoster(imageURL, title, quote) {
   };
 }
 // innerhtml to change
-  //event listener for the input field?
+//event listener for the input field?
 
 function generateRandom() {
   var imageURL = getRandomIndex(images);
@@ -189,14 +190,14 @@ function createCustomView() {
 }
 
 function createCustomPoster(){
-
+  // target input value = innerHTML for poster title
+  // target input value = innerHTML for poster quote
+  // target input value = src for poster image url
+  // how to display the custom poster?
 }
-// target input value = innerHTML for poster title
-// target input value = innerHTML for poster quote
-// target input value = src for poster image url
 
 function savePoster() {
-
+// add to array, get by the date.now id
 }
 function displaySaved() {
   hideElement(showMainPoster)
@@ -207,30 +208,55 @@ function displaySaved() {
   
 
 /*
-iteration 1
-~~~~~~~~~~
-BUTTONS!
-When a user clicks the “Nevermind, take me back!” or “Back to Main” buttons, we should only see the main poster section
---> event listener for the return button
-----> toggle function to hide the posters and show main page
-
-In summary: Be able to switch between the three views (main poster, form, and saved posters) on the correct button clicks
-
-***go check out the HTML and CSS files to see how the form and saved posters sections are being hidden in the first place
 
 iteration 2
 ~~~~~~~~~~~~
 TARGET THE INNERHTML TO CREATE NEW & SAVE
 On the new poster form view, users should be able to fill out the three input fields and then hit the Show My Poster button
+--> the query selector, event listener and function are made! :)
+----> still need the show my poster button to work
 
 When the Show My Poster button is clicked, several things will happen:
+--> idk y it takes us back to main (for now)
 
 Use the values from the inputs to create a new, unique poster object (part of your data model)
+--> call upon the createPoster function to create the poster object
 
 Save the submitted data into the respective arrays (image URL into the images array, etc - all part of your data model) so that future random posters can use the user-created data
----> create a function to push input into savedposters, caption, phrase, & image source array
+--> create a function to push input into savedposters, caption, phrase, & image source array
 
 Change back to the main poster view (hiding the form view again)
+--> this should work w our hidden views, double check
 
 Use the new, unique poster object (part of your data model) to display the newly created poster image, title, and quote in the main view on the DOM
+--> write a function to display poster, using the currentCover variable given
+
+*** hint***
+Is something weird happening when you click the button? Try googling event.preventDefault()!
+
+iteration 3
+~~~~~~~~~~~
+When a user clicks the “Save This Poster” button, the current main poster will be added to the savedPosters array.
+--> savePoster function done
+----> .push method
+
+If a user clicks the “Save This Poster” more than once on a single poster, it will still only be saved once (no duplicates)
+--> create a truthy/falsy variable for a conditional
+
+When a user clicks the “Show Saved Posters” button, we should see the saved posters section
+All the posters in the savedPosters array should be displayed in the saved posters grid section
+--> create a function as an event handler?
+----> target the section with innerHTML as an empty string
+------> because working off an array, for loop?
+
+
+
+iteration 4
+~~~~~~~~~~~
+From the saved posters view, if a user double clicks a saved poster, it will be deleted
+HTML onclick attributes should not be used in any HTML code - all functionality should be through JavaScript
+--> event listener for the image with the dblclick event
+----> event bubbling to target the section where the image is in saved posters view
+
+
 */
