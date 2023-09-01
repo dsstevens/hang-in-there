@@ -111,7 +111,7 @@ var showSavedBtn = document.querySelector(".show-saved");
 var showRandomBtn = document.querySelector(".show-random");
 var showFormBtn = document.querySelector(".show-form");
 var showMainBtn = document.querySelector(".show-main");
-var makePosterBtn = document.querySelector(".make-poster")
+var showMyPosterBtn = document.querySelector(".make-poster")
 var goBackToMainBtn = document.querySelector(".back-to-main")
 // views
 var showMainPoster = document.querySelector(".main-poster")
@@ -129,8 +129,8 @@ showSavedBtn.addEventListener("click", displaySaved);
 showRandomBtn.addEventListener("click", displayRandom);
 showFormBtn.addEventListener("click", createCustomView);
 showMainBtn.addEventListener("click", displayMain);
-makePosterBtn.addEventListener("click",createCustomPoster)
-goBackToMainBtn.addEventListener("click",displayMain)
+showMyPosterBtn.addEventListener("click",createCustomPoster);
+goBackToMainBtn.addEventListener("click",displayMain);
 
 // functions and event handlers go here 👇
 
@@ -184,16 +184,19 @@ function hideElement(element) {
 }
 
 function createCustomView() {
-  showElement(makePosterBtn)
   hideElement(showMainPoster)
   showElement(posterForm)
 }
 
-function createCustomPoster(){
-  // target input value = innerHTML for poster title
-  // target input value = innerHTML for poster quote
-  // target input value = src for poster image url
-  // how to display the custom poster?
+function createCustomPoster(event){
+  currentPoster = createPoster(userCreatedImage, userCreatedTitle, userCreatedQuote )
+  posterImg.src = userCreatedImage.value 
+  posterTitle.innerHTML = userCreatedTitle.value
+  posterQuote.innerHTML = userCreatedQuote.value
+ event.preventDefault();
+ hideElement(posterForm)
+ showElement(showMainPoster)
+ return currentPoster
 }
 
 function savePoster() {
