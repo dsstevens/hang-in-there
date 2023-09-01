@@ -101,28 +101,36 @@ var savedPosters = [];
 var currentPoster;
 
 // query selector variables go here 👇
+// cover, title descriptor
+var posterImg = document.querySelector(".poster-img");
+var posterTitle = document.querySelector(".poster-title");
+var posterQuote = document.querySelector(".poster-quote");
+// buttons
 var saveButton = document.querySelector(".save-poster");
 var showSavedBtn = document.querySelector(".show-saved");
 var showRandomBtn = document.querySelector(".show-random");
 var showFormBtn = document.querySelector(".show-form");
-var posterImg = document.querySelector(".poster-img");
-var posterTitle = document.querySelector(".poster-title");
-var posterQuote = document.querySelector(".poster-quote");
 var showMainBtn = document.querySelector(".show-main");
+var makePosterBtn = document.querySelector(".make-poster")
+var goBackToMainBtn = document.querySelector(".back-to-main")
+// views
 var showMainPoster = document.querySelector(".main-poster")
 var posterForm = document.querySelector(".poster-form")
-var makePosterBtn = document.querySelector(".make-poster")
-var goBackToMain = document.querySelector(".back-to-main")
+var savedPostersView = document.querySelector(".saved-posters")
+// user created
+var userCreatedTitle = document.querySelector("#poster-title")
+var userCreatedQuote = document.querySelector("#poster-quote")
+var userCreatedImage = document.querySelector("#poster-image-url")
 
 // event listeners go here 👇
 window.addEventListener("load", displayRandom);
 saveButton.addEventListener("click", savePoster);
 showSavedBtn.addEventListener("click", displaySaved);
 showRandomBtn.addEventListener("click", displayRandom);
-showFormBtn.addEventListener("click", createCustomView);
+showFormBtn.addEventListener("click", createPoster);
 showMainBtn.addEventListener("click", displayMain);
-makePosterBtn.addEventListener("click", createCustomView)
-goBackToMain.addEventListener("click",displayMain)
+makePosterBtn.addEventListener("click",createCustomPoster)
+goBackToMainBtn.addEventListener("click",displayMain)
 // functions and event handlers go here 👇
 
 // (we've provided two to get you started)!
@@ -138,12 +146,13 @@ function createPoster(imageURL, title, quote) {
     quote: quote,
   };
 }
+// innerhtml to change
+  //event listener for the input field?
 
 function generateRandom() {
   var imageURL = getRandomIndex(images);
   var title = getRandomIndex(titles);
   var quote = getRandomIndex(quotes);
-
   return createPoster(imageURL, title, quote);
 }
 
@@ -157,7 +166,7 @@ function displayMain() {
   // take us back to the main page from the custom form
   showElement(showMainPoster)
   hideElement(posterForm)
-  hideElement(savedPosters)
+  hideElement(savedPostersView)
 }
 
 //hidden and visible toggle vs conditional statements that are repetitive
@@ -178,6 +187,10 @@ function createCustomView() {
   hideElement(showMainPoster)
   showElement(posterForm)
 }
+
+function createCustomPoster(){
+
+}
 // target input value = innerHTML for poster title
 // target input value = innerHTML for poster quote
 // target input value = src for poster image url
@@ -187,21 +200,16 @@ function savePoster() {
 }
 function displaySaved() {
   hideElement(showMainPoster)
-  showElement(savedPosters)
-  showElement(goBackToMain)
+  showElement(savedPostersView)
 }
+
+
+  
+
 /*
 iteration 1
 ~~~~~~~~~~
 BUTTONS!
-When a user clicks the “Make Your Own Poster” button, we should see the form, and the main poster should be hidden
---> event listener for make your own poster button
-----> toggle function for showing the form & hiding the landing page
-
-When a user clicks the “View Saved Posters” button, we should see the saved posters area, and the main poster should be hidden
---> event listener for the view saved posters button
-----> toggle function for showing the saved posters and hiding the main poster
-
 When a user clicks the “Nevermind, take me back!” or “Back to Main” buttons, we should only see the main poster section
 --> event listener for the return button
 ----> toggle function to hide the posters and show main page
@@ -220,6 +228,7 @@ When the Show My Poster button is clicked, several things will happen:
 Use the values from the inputs to create a new, unique poster object (part of your data model)
 
 Save the submitted data into the respective arrays (image URL into the images array, etc - all part of your data model) so that future random posters can use the user-created data
+---> create a function to push input into savedposters, caption, phrase, & image source array
 
 Change back to the main poster view (hiding the form view again)
 
