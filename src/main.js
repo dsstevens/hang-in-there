@@ -127,7 +127,11 @@ var userCreatedImage = document.querySelector("#poster-image-url")
 // event listeners go here 👇
 window.addEventListener("load", displayRandom);
 saveButton.addEventListener("click", savePoster);
-showSavedBtn.addEventListener("click", displaySaved);
+showSavedBtn.addEventListener("click", function(event){
+  event.preventDefault()
+  displaySavedPosters()
+  displaySavedSection()
+});
 showRandomBtn.addEventListener("click", displayRandom);
 showFormBtn.addEventListener("click", createCustomView);
 showMainBtn.addEventListener("click", displayMain);
@@ -135,7 +139,8 @@ showMyPosterBtn.addEventListener("click",function(event){
   event.preventDefault()
   createCustomPoster()
   displayMain()
-});goBackToMainBtn.addEventListener("click",displayMain);
+});
+goBackToMainBtn.addEventListener("click",displayMain);
 
 // functions and event handlers go here 👇
 
