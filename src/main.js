@@ -117,6 +117,8 @@ var goBackToMainBtn = document.querySelector(".back-to-main")
 var showMainPoster = document.querySelector(".main-poster")
 var posterForm = document.querySelector(".poster-form")
 var savedPostersView = document.querySelector(".saved-posters")
+var savedPostersGrid = document.querySelector(".saved-posters-grid")
+
 // user created
 var userCreatedTitle = document.querySelector("#poster-title")
 var userCreatedQuote = document.querySelector("#poster-quote")
