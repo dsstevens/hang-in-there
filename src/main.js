@@ -188,7 +188,7 @@ function createCustomView() {
   showElement(posterForm)
 }
 
-function createCustomPoster(event){
+function createCustomPoster(){
   currentPoster = createPoster(userCreatedImage, userCreatedTitle, userCreatedQuote )
   posterImg.src = userCreatedImage.value 
   posterTitle.innerHTML = userCreatedTitle.value
