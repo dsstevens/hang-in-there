@@ -1,34 +1,20 @@
-# Hang In There
-
-A boilerplate repo. 
-
-## Set Up
-
-1. One teammate: fork this repository
-2. Clone down your new, forked repo
-3. cd into the repository
-4. Open it in your text editor
-5. Add all project partners and your assigned instructor as collaborators on the repository
-
-Project spec & rubric can be found [here](https://frontend.turing.edu/projects/module-1/hang-in-there.html)
-
-To view your project:
-
-1. In your terminal, navigate to your project repo
-2. Run the command `open index.html`
-  
-______________________________________________________  
-# README Template  
-Before turning this project in, erase this line and everything above it and fill in the info below.  
-______________________________________________________  
-
 # Hang in There  
 
 ### Abstract:
 [//]: <> (Briefly describe what you built and its features. What problem is the app solving? How does this application solve that problem?)
+This is a user-friendly app that displays motivational posters. Users can generate random posters with the click of a button from an array of provided images, titles, and quotes.If they like the poster, they can save that poster to their saved library. There is also the fun option of creating a new, unique poster with user inputs for an image URL, title, and quotes.
+The features includes are:
+- The ability to randomly generate a motivational poster
+- The ability to navigate between views
+- The ability to create a unique poster
+- The ability to save user created and randomly generated posters without duplicates
+- The ability to delete any posters from the saved collection
 
 ### Installation Instructions:
 [//]: <> (What steps does a person have to take to get your app cloned down and running?)
+- Git clone this repo to your local machine
+- cd into that directory
+- Enter the command 'open 
 
 ### Preview of App:
 [//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)

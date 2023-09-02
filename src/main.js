@@ -170,6 +170,7 @@ function displayRandom() {
   posterTitle.innerHTML = titles[randomPoster.title];
   posterQuote.innerHTML = quotes[randomPoster.quote];
 }
+
 function displayMain() {
   showElement(showMainPoster)
   hideElement(posterForm)
@@ -179,6 +180,7 @@ function displayMain() {
 function showElement(element) {
   element.classList.remove("hidden");
 }
+
 function hideElement(element) {
   element.classList.add("hidden");
 }
@@ -193,22 +195,18 @@ function createCustomPoster(){
   posterImg.src = userCreatedImage.value 
   posterTitle.innerHTML = userCreatedTitle.value
   posterQuote.innerHTML = userCreatedQuote.value
- hideElement(posterForm)
- showElement(showMainPoster)
- return currentPoster
+  return currentPoster
 }
 
 function savePoster() {
   var currentPoster = createPoster(posterImg.src, posterTitle.innerText, posterQuote.innerText);
-
-  function posterMatches(poster) {
-    return (
-      poster.imageURL === currentPoster.imageURL &&
-      poster.title === currentPoster.title &&
-      poster.quote === currentPoster.quote
-    )
-  }
-
+    function posterMatches(poster) {
+      return (
+        poster.imageURL === currentPoster.imageURL &&
+        poster.title === currentPoster.title &&
+        poster.quote === currentPoster.quote
+      )
+    }
   if (!savedPosters.some(posterMatches)) {
     savedPosters.push(currentPoster);
   }
@@ -238,7 +236,6 @@ savedPostersGrid.addEventListener("dblclick", function (event) {
     var index = savedPosters.findIndex((poster) => poster.id.toString() === id);
     if (index !== -1) {
       savedPosters.splice(index, 1);
-
       displaySavedSection();
     }
   }
