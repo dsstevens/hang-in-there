@@ -231,6 +231,20 @@ function displaySavedSection() {
   }).join('');
 }
 
+savedPostersGrid.addEventListener("dblclick", function (event) {
+  var miniPoster = event.target.closest(".mini-poster");
+  if (miniPoster) {
+    var id = miniPoster.getAttribute("data-id");
+    var index = savedPosters.findIndex((poster) => poster.id.toString() === id);
+    if (index !== -1) {
+      savedPosters.splice(index, 1);
+
+      displaySavedSection();
+    }
+  }
+});
+
+
 /*
 
 iteration 2
