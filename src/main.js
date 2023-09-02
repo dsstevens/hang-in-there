@@ -214,6 +214,23 @@ function savePoster() {
   }
 }
 
+function displaySavedPosters() {
+  hideElement(showMainPoster)
+  showElement(savedPostersView)
+}
+
+function displaySavedSection() {
+  savedPostersGrid.innerHTML = savedPosters.map(function (poster) {
+    return `
+      <div class="mini-poster" data-id="${poster.id}">
+        <img src="${poster.imageURL}" alt="${poster.title}">
+        <h2>${poster.title}</h2>
+        <h4>${poster.quote}</h4>
+      </div>
+    `;
+  }).join('');
+}
+
 /*
 
 iteration 2
