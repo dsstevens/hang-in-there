@@ -131,8 +131,11 @@ showSavedBtn.addEventListener("click", displaySaved);
 showRandomBtn.addEventListener("click", displayRandom);
 showFormBtn.addEventListener("click", createCustomView);
 showMainBtn.addEventListener("click", displayMain);
-showMyPosterBtn.addEventListener("click",createCustomPoster);
-goBackToMainBtn.addEventListener("click",displayMain);
+showMyPosterBtn.addEventListener("click",function(event){
+  event.preventDefault()
+  createCustomPoster()
+  displayMain()
+});goBackToMainBtn.addEventListener("click",displayMain);
 
 // functions and event handlers go here 👇
 
