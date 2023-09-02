@@ -201,19 +201,18 @@ function createCustomPoster(){
 function savePoster() {
   var currentPoster = createPoster(posterImg.src, posterTitle.innerText, posterQuote.innerText);
 
-  function posterIdMatches(poster) {
-    return poster.id === currentPoster.id;
+  function posterMatches(poster) {
+    return (
+      poster.imageURL === currentPoster.imageURL &&
+      poster.title === currentPoster.title &&
+      poster.quote === currentPoster.quote
+    )
   }
 
-  if (!savedPosters.some(posterIdMatches)) {
+  if (!savedPosters.some(posterMatches)) {
     savedPosters.push(currentPoster);
   }
 }
-function displaySaved() {
-  hideElement(showMainPoster)
-  showElement(savedPostersView)
-}
-
 
 /*
 
