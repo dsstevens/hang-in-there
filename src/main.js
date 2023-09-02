@@ -193,7 +193,6 @@ function createCustomPoster(event){
   posterImg.src = userCreatedImage.value 
   posterTitle.innerHTML = userCreatedTitle.value
   posterQuote.innerHTML = userCreatedQuote.value
- event.preventDefault();
  hideElement(posterForm)
  showElement(showMainPoster)
  return currentPoster
